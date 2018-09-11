@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const db = require('../database/index');
 
 const app = express();
 
@@ -10,12 +11,36 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(express.static(path.join(__dirname, '../angular-client/dist/angular-client')))
 
-app.post('/login' , function(req , res) {
-	console.log('aa' , req.body)
+app.post('/addEquip' , function(req , res) {
+	let name = req.body.name;
+	let serialNumber = req.body.serialNumber;
+
+	let equip =new db.equipmentSchema({
+		name: name,
+		serialNumber: serialNumber
+	});
+	equip.save(function (err, data) { 
+        if (err) {
+            throw err; 
+        } else {
+            console.log('saved!'); 
+        }
+    });
 })
 
-app.get('/', function (req , res) {
-	res.sendFile("index.html")
+app.get('/getEquip', function (req,res) {
+	db.equipmentSchema({}, function (err, data) {
+		if(err){
+			throw err;
+		}else{
+			res.send(data);
+		}
+	})
+})
+
+
+app.get('/*', function (req , res) {
+	res.sendFile(path.resolve(path.join(__dirname,'../angular-client/dist/angular-client/index.html')))
 })
 
 var port= 3000;
