@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import axios from 'axios';
+
+export interface DialogData {
+  name: string;
+  serialNumber: string;
+  attachment: string;
+}
 
 @Component({
   selector: 'app-main',
@@ -7,23 +14,10 @@ import axios from 'axios';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
- jackel  = ''
-  constructor() { }
 
   ngOnInit() {
+
   }
-alo(e){
-	this.jackel = e.target.value;
 
-};
 
-qays(){
-	axios.post('/login',{name:this.jackel})
-	.then(function () {
-		console.log('done');
-	})
-	.catch(function(err){
-		throw err;
-		})
-}
 }

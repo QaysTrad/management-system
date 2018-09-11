@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MainComponent } from './main/main.component';
-import { AdminEquipmentComponent } from './admin-equipment/admin-equipment.component';
+import { MainComponent} from './main/main.component';
+import { AdminEquipmentComponent, DialogDataEquipment } from './admin-equipment/admin-equipment.component';
 import { AdminEmployeesComponent } from './admin-employees/admin-employees.component';
 import { AdminProjectsComponent } from './admin-projects/admin-projects.component';
 import { UserProjectsComponent } from './user-projects/user-projects.component';
@@ -14,14 +14,19 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const appRoutes: Routes = [
   { path: '',
-    component: MainComponent
+    component: HomeComponent
   }, 
   {
     path:'main',
-    component: HomeComponent
+    component: MainComponent
   },
   {
     path:'admin-projects',
@@ -38,7 +43,8 @@ const appRoutes: Routes = [
     AdminEmployeesComponent,
     AdminProjectsComponent,
     UserProjectsComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    DialogDataEquipment
   ],
   imports: [
     BrowserModule,
@@ -46,15 +52,24 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
+    MatToolbarModule
   ],
   exports: [
    BrowserModule,
    BrowserAnimationsModule,
    NoopAnimationsModule,
    MatButtonModule,
-   MatCheckboxModule
+   MatCheckboxModule,
+   MatInputModule,
+   MatIconModule,
+   MatDialogModule,
+   MatToolbarModule
    ],
+  entryComponents: [AdminEquipmentComponent, DialogDataEquipment],
   providers: [],
   bootstrap: [AppComponent]
 })

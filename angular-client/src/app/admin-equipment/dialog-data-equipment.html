@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add Equipment</h1>
+<div mat-dialog-content>
+ <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="equipment name" (input)='alo($event)'>
+  </mat-form-field>
+  <br>
+   <mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="equipment serialNumber" (input)='alo2($event)'>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="Add()">Add</button>
+</div>
+ <!-- <button mat-raised-button color="primary">Add</button> -->
