@@ -1,5 +1,5 @@
-import { Component, OnInit , Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import axios from 'axios';
 
 export interface DialogData {
@@ -14,35 +14,39 @@ export interface DialogData {
   styleUrls: ['./admin-equipment.component.css']
 })
 export class AdminEquipmentComponent implements OnInit {
-name: string;
-serialNumber: string;
-attachment: string;
-equip= new Array();
+  name: string;
+  serialNumber: string;
+  attachment: string;
+  equip = new Array();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.equipData();
   }
 
-openDialog() {
+  openDialog() {
     this.dialog.open(DialogDataEquipment, {
-        data: {name: this.name, serialNumber: this.serialNumber , attachment: this.attachment}
+      data: { name: this.name, serialNumber: this.serialNumber, attachment: this.attachment }
     });
   }
 
-equipData(){
+  equipData() {
     axios.get('/getEquip')
-  .then(function (data) {
-    console.log(data.data);
-  })
-  .catch(function (err) {
-    console.log(err);
-  })
-}
-deleteEquip(){
-  axios.post('/deleteEquip')
-}
+      .then(function (data) {
+        console.log(data.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+  }
+  deleteEquip(id) {
+    axios.post('/deleteEquip', { id: id })
+      .then(() =>
+        console.log('done'))
+      .catch((err) =>
+        console.log('err', err))
+  }
 }
 
 @Component({
@@ -50,32 +54,32 @@ deleteEquip(){
   templateUrl: 'dialog-data-equipment.html',
 })
 export class DialogDataEquipment {
-    name: string;
+  name: string;
   serialNumber: string;
   attachment: string;
-  
+
   constructor(
     public dialogRef: MatDialogRef<AdminEquipmentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-   onNoClick(): void {
+  onNoClick(): void {
     this.dialogRef.close();
   }
 
-  alo(e){
-  this.name = e.target.value;
-};
-alo2(e){
-  this.serialNumber = e.target.value;
-};
-Add(){
-  axios.post('/addEquip',{name:this.name, serialNumber:this.serialNumber})
-  .then(function () {
-    console.log('done');
-  })
-  .catch(function(err){
-    throw err;
-    })
-}
+  alo(e) {
+    this.name = e.target.value;
+  };
+  alo2(e) {
+    this.serialNumber = e.target.value;
+  };
+  Add() {
+    axios.post('/addEquip', { name: this.name, serialNumber: this.serialNumber })
+      .then(function () {
+        console.log('done');
+      })
+      .catch(function (err) {
+        throw err;
+      })
+  }
 
 }
