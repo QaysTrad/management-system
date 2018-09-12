@@ -37,6 +37,11 @@ app.post('/deleteEquip', (req, res) => {
 		}
 	})
 })
+
+app.post('/editEquip', (req, res) => {
+
+})
+
 app.get('/getEquip', (req, res) => {
 	db.equipmentSchema.find({}, (err, data) => {
 		if (err) {
@@ -45,6 +50,40 @@ app.get('/getEquip', (req, res) => {
 			res.send(data);
 		}
 	})
+})
+
+app.post('/addEmp', (req, res) => {
+	let name = req.body.name;
+	let serialNumber = req.body.serialNumber;
+
+	let equip = new db.employeesSchema({
+		name: name,
+		serialNumber: serialNumber
+	});
+	equip.save((err, data) => {
+		if (err) {
+			throw err;
+		} else {
+			console.log('saved!');
+		}
+	});
+})
+
+app.post('/addProject', (req, res) => {
+	let name = req.body.name;
+	let serialNumber = req.body.serialNumber;
+
+	let equip = new db.projectsSchema({
+		name: name,
+		serialNumber: serialNumber
+	});
+	equip.save((err, data) => {
+		if (err) {
+			throw err;
+		} else {
+			console.log('saved!');
+		}
+	});
 })
 
 

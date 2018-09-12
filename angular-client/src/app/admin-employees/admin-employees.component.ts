@@ -66,7 +66,7 @@ alo2(e){
   this.serialNumber = e.target.value;
 };
 Add(){
-  axios.post('/addEquip',{name:this.name, serialNumber:this.serialNumber})
+  axios.post('/addEmp',{name:this.name, serialNumber:this.serialNumber})
   .then(function () {
     console.log('done');
   })

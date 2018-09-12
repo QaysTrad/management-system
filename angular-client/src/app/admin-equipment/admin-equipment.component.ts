@@ -17,8 +17,7 @@ export class AdminEquipmentComponent implements OnInit {
   name: string;
   serialNumber: string;
   attachment: string;
-  equip = new Array();
-
+  equip = [];
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
