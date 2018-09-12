@@ -1,25 +1,23 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Logo</span>
-        <a routerLink="/admin-equipment" routerLinkActive="active" ><button mat-raised-button  class="navButton">Admin equipment
-        </button></a>
-        <a routerLink="/admin-employees" ><button mat-raised-button  class="navButton">Admin employees
-        </button></a>
-        <a routerLink="/admin-projects" ><button mat-raised-button  class="navButton">Admin projects
-        </button></a>
-        <a routerLink="/user-projects" ><button mat-raised-button  class="navButton">User Project
-        </button></a>
-        <a routerLink="/user-details" ><button mat-raised-button  class="navButton">User Details
-        </button></a>
+    <a routerLink="/admin-equipment" routerLinkActive="active"><button mat-raised-button class="navButton">Admin
+        equipment
+      </button></a>
+    <a routerLink="/admin-employees"><button mat-raised-button class="navButton">Admin employees
+      </button></a>
+    <a routerLink="/admin-projects"><button mat-raised-button class="navButton">Admin projects
+      </button></a>
     <span class="example-spacer">
     </span>
-   <a routerLink="/main"> <mat-icon class="example-icon">person</mat-icon></a>
+    <a>
+      <mat-icon class="example-icon" (click)="logout()">logout</mat-icon>
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <h2>Add Employees</h2>
-  
- <button mat-fab color="primary" (click)="openDialog()">
-    <mat-icon aria-label="Example icon-button with a plus icon">add</mat-icon>
-  </button>
 
+<button mat-fab color="primary" (click)="openDialog()">
+  <mat-icon aria-label="Example icon-button with a plus icon">add</mat-icon>
+</button>
