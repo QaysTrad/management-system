@@ -29,7 +29,7 @@ app.post('/addEquip' , function(req , res) {
 })
 
 app.get('/getEquip', function (req,res) {
-	db.equipmentSchema({}, function (err, data) {
+	db.equipmentSchema.find({}, function (err, data) {
 		if(err){
 			throw err;
 		}else{
