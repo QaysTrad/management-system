@@ -1,11 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import axios from 'axios';
+import { Router } from '@angular/router';
+import Axios from 'axios';
 
 export interface DialogData {
-  name: string;
-  serialNumber: string;
-  attachment: string;
 }
 
 @Component({
@@ -14,37 +12,25 @@ export interface DialogData {
   styleUrls: ['./admin-equipment.component.css']
 })
 export class AdminEquipmentComponent implements OnInit {
-  name: string;
-  serialNumber: string;
-  attachment: string;
-  equip = [];
-  constructor(public dialog: MatDialog) { }
+
+  constructor(private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.equipData();
   }
 
+  logout() {
+    Axios.get('/logout')
+      .then(() => {
+        this.router.navigate(['home'])
+      })
+      .catch((err) => {
+        throw err;
+      }
+      )
+  }
   openDialog() {
-    this.dialog.open(DialogDataEquipment, {
-      data: { name: this.name, serialNumber: this.serialNumber, attachment: this.attachment }
-    });
-  }
-
-  equipData() {
-    axios.get('/getEquip')
-      .then(function (data) {
-        console.log(data.data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
-  }
-  deleteEquip(id) {
-    axios.post('/deleteEquip', { id: id })
-      .then(() =>
-        console.log('done'))
-      .catch((err) =>
-        console.log('err', err))
+    this.dialog.open(DialogDataEquipment);
   }
 }
 
@@ -59,20 +45,14 @@ export class DialogDataEquipment {
 
   constructor(
     public dialogRef: MatDialogRef<AdminEquipmentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private _sanitizer: DomSanitizer) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  alo(e) {
-    this.name = e.target.value;
-  };
-  alo2(e) {
-    this.serialNumber = e.target.value;
-  };
-  Add() {
-    axios.post('/addEquip', { name: this.name, serialNumber: this.serialNumber })
+  Add(name, serialNumber) {
+    Axios.post('/addEquip', { name: this.name, serialNumber: this.serialNumber })
       .then(function () {
         console.log('done');
       })
