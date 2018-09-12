@@ -17,11 +17,12 @@ export class AdminEquipmentComponent implements OnInit {
 name: string;
 serialNumber: string;
 attachment: string;
+equip= new Array();
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-
+    this.equipData();
   }
 
 openDialog() {
@@ -33,13 +34,15 @@ openDialog() {
 equipData(){
     axios.get('/getEquip')
   .then(function (data) {
-    console.log(data);
+    console.log(data.data);
   })
   .catch(function (err) {
     console.log(err);
   })
 }
-
+deleteEquip(){
+  axios.post('/deleteEquip')
+}
 }
 
 @Component({

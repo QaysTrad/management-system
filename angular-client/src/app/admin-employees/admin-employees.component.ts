@@ -25,7 +25,7 @@ attachment: string;
   }
 
 openDialog() {
-    this.dialog.open(DialogDataExampleDialog, {
+    this.dialog.open(DialogDataEmployees, {
         data: {name: this.name, serialNumber: this.serialNumber , attachment: this.attachment}
     });
   }
@@ -46,7 +46,7 @@ equipData(){
   selector: 'dialog-data-employees',
   templateUrl: 'dialog-data-employees.html',
 })
-export class DialogDataExampleDialog {
+export class DialogDataEmployees {
     name: string;
   serialNumber: string;
   attachment: string;

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add Project</h1>
+<div mat-dialog-content>
+	<mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="Project id" (input)='alo($event)'>
+  </mat-form-field>
+  <br>
+ <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Project name" (input)='alo($event)'>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Project type" (input)='alo($event)'>
+  </mat-form-field>
+  <br>
+   <mat-form-field class="example-full-width">
+    <input matInput type="date" placeholder="Project from" (input)='alo2($event)'>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="date" placeholder="Project to" (input)='alo2($event)'>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="Add()">Add</button>
+</div>
+ <!-- <button mat-raised-button color="primary">Add</button> -->

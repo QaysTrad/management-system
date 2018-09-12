@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent} from './main/main.component';
 import { AdminEquipmentComponent, DialogDataEquipment } from './admin-equipment/admin-equipment.component';
-import { AdminEmployeesComponent } from './admin-employees/admin-employees.component';
-import { AdminProjectsComponent } from './admin-projects/admin-projects.component';
+import { AdminEmployeesComponent, DialogDataEmployees } from './admin-employees/admin-employees.component';
+import { AdminProjectsComponent, DialogDataProjects } from './admin-projects/admin-projects.component';
 import { UserProjectsComponent } from './user-projects/user-projects.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
@@ -19,6 +19,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
 
 const appRoutes: Routes = [
   { path: '',
@@ -29,8 +30,24 @@ const appRoutes: Routes = [
     component: MainComponent
   },
   {
-    path:'admin-projects',
+    path:'admin-equipment',
     component:AdminEquipmentComponent
+  },
+  {
+    path:'admin-employees',
+    component:AdminEmployeesComponent
+  },
+  {
+    path:'admin-projects',
+    component:AdminProjectsComponent
+  },
+  {
+    path:'user-projects',
+    component:UserProjectsComponent
+  },
+  {
+    path:'user-details',
+    component:UserDetailsComponent
   }
 ]
 
@@ -44,7 +61,9 @@ const appRoutes: Routes = [
     AdminProjectsComponent,
     UserProjectsComponent,
     UserDetailsComponent,
-    DialogDataEquipment
+    DialogDataEquipment,
+    DialogDataEmployees,
+    DialogDataProjects
   ],
   imports: [
     BrowserModule,
@@ -56,7 +75,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
   ],
   exports: [
    BrowserModule,
@@ -67,9 +87,10 @@ const appRoutes: Routes = [
    MatInputModule,
    MatIconModule,
    MatDialogModule,
-   MatToolbarModule
+   MatToolbarModule,
+   MatTableModule
    ],
-  entryComponents: [AdminEquipmentComponent, DialogDataEquipment],
+  entryComponents: [AdminEquipmentComponent, DialogDataEquipment, DialogDataEmployees, DialogDataProjects],
   providers: [],
   bootstrap: [AppComponent]
 })
