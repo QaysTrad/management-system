@@ -34,6 +34,7 @@ export class AdminProjectsComponent implements OnInit {
         throw err;
       })
   }
+  
   projectData(proData = []){
     Axios.get('/getProject')
     .then((data) => {
@@ -43,6 +44,16 @@ export class AdminProjectsComponent implements OnInit {
     })
     .catch((err) => {
       console.log(err);
+    })
+  }
+
+  deleteProject(id){
+    Axios.post('/deletePro', {id})
+    .then(() => {
+      console.log('deleted');
+    })
+    .catch((err) => {
+      throw err; 
     })
   }
 }
@@ -69,5 +80,31 @@ export class DialogDataProjects {
       .catch((err) => {
         throw err;
       })
+  }
+}
+
+@Component({
+  selector: 'dialog-data-update-projects',
+  templateUrl: 'dialog-data-update-projects.html',
+})
+export class DialogDataUpdateProjects {
+
+  constructor(
+    public dialogRef: MatDialogRef<AdminProjectsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  
+  Update(id, name, type, from, to){
+       Axios.post('/updateProject', { id, name, type, from, to })
+      .then(() => {
+        console.log('done');
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
   }
 }

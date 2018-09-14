@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Update Project</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="Project id" [(ngModel)]="id">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Project name" [(ngModel)]="name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Project type" [(ngModel)]="type">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="date" placeholder="Project from" [(ngModel)]="from">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput type="date" placeholder="Project to" [(ngModel)]="to">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="Update(id, name, type, from, to)">Update</button>
+</div>
