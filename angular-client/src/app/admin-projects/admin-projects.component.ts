@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import axios from 'axios';
+import { Router } from '@angular/router';
+import Axios from 'axios';
 
 export interface DialogData {
 }
@@ -11,33 +12,46 @@ export interface DialogData {
   styleUrls: ['./admin-projects.component.css']
 })
 export class AdminProjectsComponent implements OnInit {
-  name: string;
-  serialNumber: string;
-  attachment: string;
-
-  constructor(public dialog: MatDialog) { }
+  proData = [];
+  
+  constructor(private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-
+    this.projectData(this.proData)
   }
 
   openDialog() {
-    this.dialog.open(DialogDataProjects, {
-      data: { name: this.name, serialNumber: this.serialNumber, attachment: this.attachment }
-    });
+    this.dialog.open(DialogDataProjects);
   }
 
+  logout() {
+    Axios.get('/logout')
+      .then(() => {
+        this.router.navigate(['home'])
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
+  projectData(proData = []){
+    Axios.get('/getProject')
+    .then((data) => {
+      for(var i = 0 ; i<data.data.length;i++){
+        proData.push(data.data[i])
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 }
-
 
 @Component({
   selector: 'dialog-data-projects',
   templateUrl: 'dialog-data-projects.html',
 })
 export class DialogDataProjects {
-  name: string;
-  serialNumber: string;
-  attachment: string;
 
   constructor(
     public dialogRef: MatDialogRef<AdminProjectsComponent>,
@@ -47,20 +61,13 @@ export class DialogDataProjects {
     this.dialogRef.close();
   }
 
-  alo(e) {
-    this.name = e.target.value;
-  };
-  alo2(e) {
-    this.serialNumber = e.target.value;
-  };
-  Add() {
-    axios.post('/addProject', { name: this.name, serialNumber: this.serialNumber })
-      .then(function () {
+  Add(id, name, type, from, to) {
+    Axios.post('/addProject', { id, name, type, from, to })
+      .then(() => {
         console.log('done');
       })
-      .catch(function (err) {
+      .catch((err) => {
         throw err;
       })
   }
-
 }
