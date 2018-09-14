@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Update Employee</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" placeholder="Emplyee id" [(ngModel)]="id" >
+  </mat-form-field>
+  <br>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Emplyee name" value={{data.name}}>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Emplyee nationality" [(ngModel)]="nationality">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Emplyee JobTitle" [(ngModel)]="JobTitle">
+  </mat-form-field>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="Update(id , name , nationality, JobTitle)">Update</button>
+</div>

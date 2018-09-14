@@ -13,14 +13,25 @@ export interface DialogData {
 })
 export class AdminEmployeesComponent implements OnInit {
 
+empData = [];
+
   constructor(private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getEmploy(this.empData)
   }
+
   openDialog() {
     this.dialog.open(DialogDataEmployees);
   }
+
+  updateDialog(employName, nationality, jobTitle) {
+    this.dialog.open(DialogDataUpdateEmployees,{
+      data: {employName: employName, nationality: nationality, jobTitle: jobTitle}
+    });
+  }
+
   logout() {
     Axios.get('/logout')
       .then(() => {
@@ -29,7 +40,29 @@ export class AdminEmployeesComponent implements OnInit {
       .catch((err) => {
         throw err;
       })
-  }
+    }
+    
+    getEmploy(empData = []){
+      Axios.get('/getEmp')
+      .then((data) => {
+        for(var i=0;i < data.data.length;i++){
+          empData.push(data.data[i])
+        }
+      })
+      .catch((err) => {
+        throw err;
+      })
+    }
+    
+    deleteEmp(id){
+      Axios.post('/deleteEmploy',{id})
+      .then(() => {
+        console.log('done');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
 }
 
 
@@ -55,5 +88,21 @@ export class DialogDataEmployees {
         throw err;
       })
   }
+}
 
+@Component({
+  selector: 'dialog-data-update-employees',
+  templateUrl: 'dialog-data-update-employees.html',
+})
+export class DialogDataUpdateEmployees {
+  constructor(
+    public dialogRef: MatDialogRef<AdminEmployeesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  Update(){
+    console.log('aaaa')
+  }
 }
