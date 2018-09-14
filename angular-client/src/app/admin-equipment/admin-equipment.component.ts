@@ -24,8 +24,10 @@ export class AdminEquipmentComponent implements OnInit {
     this.dialog.open(DialogDataEquipment);
   }
 
-  updateDialog() {
-    this.dialog.open(DialogDataUpdateEquipment);
+  updateDialog(id) {
+    this.dialog.open(DialogDataUpdateEquipment, {
+      data: {id: id}
+    });
   }
 
   logout() {
@@ -66,7 +68,7 @@ export class AdminEquipmentComponent implements OnInit {
   templateUrl: 'dialog-data-equipment.html',
 })
 export class DialogDataEquipment {
-
+  image = '';
   constructor(
     public dialogRef: MatDialogRef<AdminEquipmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
@@ -109,8 +111,8 @@ export class DialogDataUpdateEquipment {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  Update(name, serialNumber){
-    Axios.post('/updateEquip',{name, serialNumber})
+  Update(id, name, serialNumber){
+    Axios.post('/updateEquip',{id :id, name:name , serialNumber:serialNumber })
     .then(() => {
       console.log('done update');
     })
