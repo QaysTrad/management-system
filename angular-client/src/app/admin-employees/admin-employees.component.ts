@@ -12,8 +12,7 @@ export interface DialogData {
   styleUrls: ['./admin-employees.component.css']
 })
 export class AdminEmployeesComponent implements OnInit {
-
-empData = [];
+  empData = [];
 
   constructor(private router: Router,
     public dialog: MatDialog) { }
@@ -28,41 +27,35 @@ empData = [];
 
   updateDialog(id) {
     this.dialog.open(DialogDataUpdateEmployees, {
-      data:{id: id}
+      data: { id: id }
     });
   }
 
   logout() {
-    Axios.get('/logout')
-      .then(() => {
-        this.router.navigate(['home'])
-      })
-      .catch((err) => {
-        throw err;
-      })
-    }
-    
-    getEmploy(empData = []){
-      Axios.get('/getEmp')
+    this.router.navigate(['home'])
+  }
+
+  getEmploy(empData = []) {
+    Axios.get('/getEmp')
       .then((data) => {
-        for(var i=0;i < data.data.length;i++){
+        for (var i = 0; i < data.data.length; i++) {
           empData.push(data.data[i])
         }
       })
       .catch((err) => {
         throw err;
       })
-    }
-    
-    deleteEmp(id){
-      Axios.post('/deleteEmploy',{id})
+  }
+
+  deleteEmp(id) {
+    Axios.post('/deleteEmploy', { id })
       .then(() => {
         console.log('done');
       })
       .catch((err) => {
         console.log(err);
       })
-    }
+  }
 }
 
 
@@ -80,7 +73,7 @@ export class DialogDataEmployees {
   }
 
   Add(name = '', nationality = '', JobTitle = '') {
-    Axios.post('/addEmp', {name, nationality, JobTitle })
+    Axios.post('/addEmp', { name, nationality, JobTitle })
       .then(() => {
         alert("the data has been saved <3");
       })
@@ -102,13 +95,13 @@ export class DialogDataUpdateEmployees {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  Update(id, name, nationality, jobTitle){
-    Axios.post('/updateEmp', {id, name, nationality, jobTitle})
-    .then(() => {
-      console.log('done');
-    })
-    .catch((err) => {
-      throw err;
-    })
+  Update(id, name, nationality, jobTitle) {
+    Axios.post('/updateEmp', { id, name, nationality, jobTitle })
+      .then(() => {
+        console.log('done');
+      })
+      .catch((err) => {
+        throw err;
+      })
   }
 }
