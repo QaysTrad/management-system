@@ -12,11 +12,12 @@ export interface DialogData {
   styleUrls: ['./admin-equipment.component.css']
 })
 export class AdminEquipmentComponent implements OnInit {
-
+ equipData = [];
   constructor(private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getEquip(this.equipData)
   }
 
   logout() {
@@ -32,6 +33,17 @@ export class AdminEquipmentComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogDataEquipment);
   }
+  getEquip(equipData = []) {
+    Axios.get('/getEquip')
+      .then((data) => {
+        for (var i = 0; i < data.data.length; i++) {
+          equipData.push(data.data[i]);
+        }
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
 }
 
 @Component({
@@ -39,20 +51,28 @@ export class AdminEquipmentComponent implements OnInit {
   templateUrl: 'dialog-data-equipment.html',
 })
 export class DialogDataEquipment {
-  name: string;
-  serialNumber: string;
-  attachment: string;
 
   constructor(
     public dialogRef: MatDialogRef<AdminEquipmentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private _sanitizer: DomSanitizer) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+ uploadImage = (event) => {
+    let img = event.target.files[0];
+    let that = this
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(img);
+    fileReader.onload = function (e) {
+      // that.image = e.target.result;
+      that.image = e.target.result;
+    }
+  }
+
   Add(name, serialNumber) {
-    Axios.post('/addEquip', { name: this.name, serialNumber: this.serialNumber })
+    Axios.post('/addEquip', { name, serialNumber , image:this.image})
       .then(function () {
         console.log('done');
       })
@@ -60,5 +80,4 @@ export class DialogDataEquipment {
         throw err;
       })
   }
-
 }

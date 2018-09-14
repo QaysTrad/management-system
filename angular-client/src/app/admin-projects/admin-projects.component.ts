@@ -3,9 +3,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import axios from 'axios';
 
 export interface DialogData {
-  name: string;
-  serialNumber: string;
-  attachment: string;
 }
 
 @Component({

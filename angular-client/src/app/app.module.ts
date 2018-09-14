@@ -11,13 +11,14 @@ import { AdminProjectsComponent, DialogDataProjects } from './admin-projects/adm
 import { UserProjectsComponent } from './user-projects/user-projects.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   exports: [
    BrowserModule,
@@ -88,7 +90,8 @@ const appRoutes: Routes = [
    MatIconModule,
    MatDialogModule,
    MatToolbarModule,
-   MatTableModule
+   MatTableModule,
+   FormsModule
    ],
   entryComponents: [AdminEquipmentComponent, DialogDataEquipment, DialogDataEmployees, DialogDataProjects],
   providers: [],
