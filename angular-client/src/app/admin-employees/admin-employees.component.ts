@@ -26,10 +26,8 @@ empData = [];
     this.dialog.open(DialogDataEmployees);
   }
 
-  updateDialog(employName, nationality, jobTitle) {
-    this.dialog.open(DialogDataUpdateEmployees,{
-      data: {employName: employName, nationality: nationality, jobTitle: jobTitle}
-    });
+  updateDialog() {
+    this.dialog.open(DialogDataUpdateEmployees);
   }
 
   logout() {
@@ -102,7 +100,13 @@ export class DialogDataUpdateEmployees {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  Update(){
-    console.log('aaaa')
+  Update(id, name, nationality, jobTitle){
+    Axios.post('/updateEmp',{id, name, nationality, jobTitle})
+    .then(() => {
+      console.log('done');
+    })
+    .catch((err) => {
+      throw err;
+    })
   }
 }
