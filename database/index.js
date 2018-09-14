@@ -25,7 +25,9 @@ let equipmentSchema = new Schema({
 let employeesSchema = new Schema({
   name : {type: String},
   nationality : {type: String},
-  jobTitle : {type: String}
+  jobTitle : {type: String},
+  employees: {type: String},
+  equipment: {type: String}
 })
 
 let projectsSchema = new Schema({
@@ -35,9 +37,9 @@ let projectsSchema = new Schema({
   toDate: {type: Date}
 })
 
-equipmentSchema = mongoose.model('equipmentSchema', equipmentSchema)
-employeesSchema = mongoose.model('employeesSchema', employeesSchema)
-projectsSchema = mongoose.model('projectsSchema', projectsSchema)
+equipmentSchema = mongoose.model('equipmentSchema', equipmentSchema);
+employeesSchema = mongoose.model('employeesSchema', employeesSchema);
+projectsSchema = mongoose.model('projectsSchema', projectsSchema);
 
 module.exports.employeesSchema = employeesSchema;
 module.exports.equipmentSchema = equipmentSchema;
