@@ -67,7 +67,7 @@ const appRoutes: Routes = [
     DialogDataEquipment,
     DialogDataUpdateEquipment,
     DialogDataEmployees,
-    DialogDataUpdateEmployees
+    DialogDataUpdateEmployees,
     DialogDataProjects,
     DialogDataUpdateProjects
   ],

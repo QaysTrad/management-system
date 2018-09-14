@@ -24,6 +24,11 @@ export class AdminProjectsComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogDataProjects);
   }
+  updateDialog(id){
+    this.dialog.open(DialogDataUpdateProjects, {
+      data: {id: id}
+    });
+  }
 
   logout() {
     Axios.get('/logout')
@@ -105,6 +110,5 @@ export class DialogDataUpdateProjects {
       .catch((err) => {
         throw err;
       })
-  }
   }
 }

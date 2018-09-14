@@ -26,8 +26,10 @@ empData = [];
     this.dialog.open(DialogDataEmployees);
   }
 
-  updateDialog() {
-    this.dialog.open(DialogDataUpdateEmployees);
+  updateDialog(id) {
+    this.dialog.open(DialogDataUpdateEmployees, {
+      data:{id: id}
+    });
   }
 
   logout() {
@@ -77,8 +79,8 @@ export class DialogDataEmployees {
     this.dialogRef.close();
   }
 
-  Add(id = '', name = '', nationality = '', JobTitle = '') {
-    Axios.post('/addEmp', { id, name, nationality, JobTitle })
+  Add(name = '', nationality = '', JobTitle = '') {
+    Axios.post('/addEmp', {name, nationality, JobTitle })
       .then(() => {
         alert("the data has been saved <3");
       })
@@ -101,7 +103,7 @@ export class DialogDataUpdateEmployees {
     this.dialogRef.close();
   }
   Update(id, name, nationality, jobTitle){
-    Axios.post('/updateEmp',{id, name, nationality, jobTitle})
+    Axios.post('/updateEmp', {id, name, nationality, jobTitle})
     .then(() => {
       console.log('done');
     })

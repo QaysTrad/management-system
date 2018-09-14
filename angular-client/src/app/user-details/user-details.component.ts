@@ -22,7 +22,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DialogDataLogin2);
+    // this.dialog.open(DialogDataLogin2);
   }
 
   getEquip(equipData = []) {
