@@ -20,6 +20,14 @@ export class AdminEquipmentComponent implements OnInit {
     this.getEquip(this.equipData)
   }
 
+  openDialog() {
+    this.dialog.open(DialogDataEquipment);
+  }
+
+  updateDialog() {
+    this.dialog.open(DialogDataUpdateEquipment);
+  }
+
   logout() {
     Axios.get('/logout')
       .then(() => {
@@ -27,12 +35,9 @@ export class AdminEquipmentComponent implements OnInit {
       })
       .catch((err) => {
         throw err;
-      }
-      )
+      })
   }
-  openDialog() {
-    this.dialog.open(DialogDataEquipment);
-  }
+
   getEquip(equipData = []) {
     Axios.get('/getEquip')
       .then((data) => {
@@ -43,6 +48,16 @@ export class AdminEquipmentComponent implements OnInit {
       .catch((err) => {
         throw err;
       })
+  }
+
+  deteleEquip(id){
+    Axios.post('/deteleEquip', {id})
+    .then(() => {
+      console.log('done');
+    })
+    .catch((err) => {
+      throw err;
+    })
   }
 }
 
@@ -66,7 +81,6 @@ export class DialogDataEquipment {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(img);
     fileReader.onload = function (e) {
-      // that.image = e.target.result;
       that.image = e.target.result;
     }
   }
@@ -79,5 +93,29 @@ export class DialogDataEquipment {
       .catch(function (err) {
         throw err;
       })
+  }
+}
+
+@Component({
+   selector: 'dialog-data-update-equipment',
+  templateUrl: 'dialog-data-update-equipment.html',
+})
+export class DialogDataUpdateEquipment {
+
+  constructor(
+    public dialogRef: MatDialogRef<AdminEquipmentComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  Update(name, serialNumber){
+    Axios.post('/updateEquip',{name, serialNumber})
+    .then(() => {
+      console.log('done update');
+    })
+    .catch((err) => {
+      throw err;
+    })
   }
 }
