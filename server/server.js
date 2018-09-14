@@ -11,57 +11,59 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../angular-client/dist/angular-client')))
 
 app.post('/addEquip', (req, res) => {
-	let name = req.body.name;
-	let serialNumber = req.body.serialNumber;
+    let name = req.body.name;
+    let serialNumber = req.body.serialNumber;
 
-	let equip = new db.equipmentSchema({
-		name: name,
-		serialNumber: serialNumber
-	});
-	equip.save((err, data) => {
-		if (err) {
-			throw err;
-		} else {
-			console.log('saved!');
-		}
-	});
+    let equip = new db.equipmentSchema({
+        name: name,
+        serialNumber: serialNumber
+    });
+    equip.save((err, data) => {
+        if (err) {
+            throw err;
+        } else {
+            console.log('saved!');
+        }
+    });
 })
 
 app.post('/deteleEquip', (req, res) => {
-	id = req.body.id;
+    id = req.body.id;
 
-	db.equipmentSchema.findOneAndRemove({_id:id},(err, data)=>{
-		if(err){
-			throw err;
-		}else{
+    db.equipmentSchema.findOneAndRemove({ _id: id }, (err, data) => {
+        if (err) {
+            throw err;
+        } else {
             res.sendStatus(200);
-		}
-	})
-})
-
-app.get('/getEquip', (req, res) => {
-	db.equipmentSchema.find({}, (err, data) => {
-		if (err) {
-			throw err;
-		} else {
-			res.send(data);
-		}
-	})
+        }
+    })
 })
 
 app.post('/updateEquip', (req, res) => {
-	let id = req.body.id
-	let name = req.body.name;
-	let serialNumber = req.body.serialNumber;
+    let id = req.body.id
+    let name = req.body.name;
+    let serialNumber = req.body.serialNumber;
 
-	  db.equipmentSchema.findOneAndUpdate({_id:id}, {$set: {
-	  	name: name,
-	  	serialNumber: serialNumber
-	  }}, function (err) {
+    db.equipmentSchema.findOneAndUpdate({ _id: id }, {
+        $set: {
+            name: name,
+            serialNumber: serialNumber
+        }
+    }, function (err) {
         if (err) {
             throw err;
-        } 
+        }
     });
+})
+
+app.get('/getEquip', (req, res) => {
+    db.equipmentSchema.find({}, (err, data) => {
+        if (err) {
+            throw err;
+        } else {
+            res.send(data);
+        }
+    })
 })
 
 app.post('/addEmp', (req, res) => {
@@ -82,8 +84,8 @@ app.post('/addEmp', (req, res) => {
     })
 })
 
-app.post('/deleteEmploy',(req, res) => {
-	const id = req.body.id;
+app.post('/deleteEmploy', (req, res) => {
+    const id = req.body.id;
 
     db.employeesSchema.findOneAndRemove({ _id: id }, (err, data) => {
         if (err) {
@@ -93,30 +95,32 @@ app.post('/deleteEmploy',(req, res) => {
     })
 })
 
-app.get('/getEmp',(req, res) => {
-	db.employeesSchema.find({}, (err, data) => {
+app.post('/updateEmp', (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const nationality = req.body.nationality;
+    const jobTitle = req.body.JobTitle;
+
+    db.employeesSchema.findOneAndUpdate({ _id: id }, {
+        $set: {
+            name: name,
+            nationality: nationality,
+            jobTitle: jobTitle
+        }
+    }, function (err) {
+        if (err) {
+            throw err;
+        }
+    });
+})
+
+app.get('/getEmp', (req, res) => {
+    db.employeesSchema.find({}, (err, data) => {
         if (err) {
             throw err;
         }
         res.send(data);
     })
-})
-
-app.post('/updateEmp', (req, res) => {
-	const id = req.body.id;
-    const name = req.body.name;
-    const nationality = req.body.nationality;
-    const jobTitle = req.body.JobTitle;
-
-   	db.employeesSchema.findOneAndUpdate({_id:id}, {$set: {
-   		name: name,
-   		nationality: nationality,
-   		jobTitle: jobTitle
-	  }}, function (err) {
-        if (err) {
-            throw err;
-        } 
-    });
 })
 
 app.post('/addProject', (req, res) => {
@@ -139,36 +143,30 @@ app.post('/addProject', (req, res) => {
     })
 })
 
-app.get('/getProject', (req, res) => {
-db.projectsSchema.find({}, (err, data) => {
-        if (err) {
-            throw err;
-        }
-        res.send(data);
-    })
-})
 
 app.post('/updateProject', (req, res) => {
-	const id = req.body.id;
-	const name = req.body.name;
+    const id = req.body.id;
+    const name = req.body.name;
     const type = req.body.type;
     const fromDate = req.body.from;
     const toDate = req.body.to;
 
-    db.projectsSchema.findOneAndUpdate({_id:id}, {$set: {
-   		name: name,
-   		nationality: nationality,
-   		jobTitle: jobTitle
-	  }}, function (err) {
+    db.projectsSchema.findOneAndUpdate({ _id: id }, {
+        $set: {
+            name: name,
+            nationality: nationality,
+            jobTitle: jobTitle
+        }
+    }, function (err) {
         if (err) {
             throw err;
-        } 
+        }
     });
 })
 
 app.post('/deletePro', (req, res) => {
-	const id = req.body.id;
-	
+    const id = req.body.id;
+
     db.projectsSchema.findOneAndRemove({ _id: id }, (err, data) => {
         if (err) {
             throw err;
@@ -177,8 +175,34 @@ app.post('/deletePro', (req, res) => {
     })
 })
 
+app.get('/getProject', (req, res) => {
+    db.projectsSchema.find({}, (err, data) => {
+        if (err) {
+            throw err;
+        }
+        res.send(data);
+    })
+})
+
+app.post('/saveProject', (req, res) => {
+    const id = req.body.id;
+    const Equipment = req.body.Equipment;
+    const Employee = req.body.Employee;
+
+    db.projectsSchema.findOneAndUpdate({ _id: id }, {
+        $set: {
+            equipment: Equipment,
+            employees: Employee
+        }
+    }, function (err) {
+        if (err) {
+            throw err;
+        }
+    });
+})
+
 app.get('/*', function (req, res) {
-	res.sendFile(path.resolve(path.join(__dirname, '../angular-client/dist/angular-client/index.html')))
+    res.sendFile(path.resolve(path.join(__dirname, '../angular-client/dist/angular-client/index.html')))
 })
 
 var port = 3000;
