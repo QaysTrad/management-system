@@ -5,22 +5,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent} from './main/main.component';
-import { AdminEquipmentComponent, DialogDataEquipment } from './admin-equipment/admin-equipment.component';
-import { AdminEmployeesComponent, DialogDataEmployees } from './admin-employees/admin-employees.component';
-import { AdminProjectsComponent, DialogDataProjects } from './admin-projects/admin-projects.component';
+import { AdminEquipmentComponent, DialogDataEquipment, DialogDataUpdateEquipment } from './admin-equipment/admin-equipment.component';
+import { AdminEmployeesComponent, DialogDataEmployees, DialogDataUpdateEmployees } from './admin-employees/admin-employees.component';
+import { AdminProjectsComponent, DialogDataProjects, DialogDataUpdateProjects } from './admin-projects/admin-projects.component';
 import { UserProjectsComponent } from './user-projects/user-projects.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgDragDropModule } from 'ng-drag-drop';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTableModule} from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 const appRoutes: Routes = [
   { path: '',
@@ -63,8 +65,11 @@ const appRoutes: Routes = [
     UserProjectsComponent,
     UserDetailsComponent,
     DialogDataEquipment,
+    DialogDataUpdateEquipment,
     DialogDataEmployees,
-    DialogDataProjects
+    DialogDataUpdateEmployees
+    DialogDataProjects,
+    DialogDataUpdateProjects
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatToolbarModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    NgDragDropModule,
+    MatCardModule
   ],
   exports: [
    BrowserModule,
@@ -91,9 +98,18 @@ const appRoutes: Routes = [
    MatDialogModule,
    MatToolbarModule,
    MatTableModule,
-   FormsModule
+   FormsModule,
+   MatCardModule
    ],
-  entryComponents: [AdminEquipmentComponent, DialogDataEquipment, DialogDataEmployees, DialogDataProjects],
+  entryComponents: [
+   AdminEquipmentComponent,
+   DialogDataEquipment, 
+   DialogDataEmployees, 
+   DialogDataProjects,
+   DialogDataUpdateProjects,
+   DialogDataUpdateEmployees,
+   DialogDataUpdateEquipment
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })
