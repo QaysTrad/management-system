@@ -23,14 +23,12 @@ let equipmentSchema = new Schema({
 })
 
 let employeesSchema = new Schema({
-  id: {type: Number , required: true},
   name : {type: String},
   nationality : {type: String},
   jobTitle : {type: String}
 })
 
 let projectsSchema = new Schema({
-  id: {type: Number},
   name: {type: String},
   type: {type: String},
   fromDate: {type: Date},
