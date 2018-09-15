@@ -1,36 +1,71 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
+import Axios from 'axios';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export var jackel = {}
+export interface DialogData {
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-user-projects',
   templateUrl: './user-projects.component.html',
   styleUrls: ['./user-projects.component.css']
 })
+@Input()
 export class UserProjectsComponent implements OnInit {
-   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  
-  ngOnInit() {
+  proData = [];
+  projectName = ""
+  dataSource = [];
+  displayedColumns: string[] = ['projectName', 'employees', 'equipment', 'fromDate', 'toDate'];
 
+  constructor(public dialog: MatDialog,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.projectData(this.proData);
+  }
+
+  openDialog() {
+    this.dialog.open(DialogDataLogin);
+  }
+
+  projectData(proData = []) {
+    Axios.get('/getProject')
+      .then((data) => {
+        for (var i = 0; i < data.data.length; i++) {
+          proData.push(data.data[i])
+        }
+        this.dataSource = this.proData;
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
+  nextPage(id, name) {
+    this.router.navigate(['user-details']);
+    jackel = { id: id, name: name }
   }
 }
 
+@Component({
+  selector: 'dialog-data-login',
+  templateUrl: 'dialog-data-login.html',
+})
+export class DialogDataLogin {
+  constructor(
+    public dialogRef: MatDialogRef<UserProjectsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private router: Router) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  login(name = '', password = '') {
+    if (name.length === 0 && password.length === 0) {
+      alert('please fill the inputs')
+    } else if (name === 'admin' && password === 'admin') {
+      this.router.navigate(['admin-equipment']);
+    }
+  }
+}

@@ -1,50 +1,45 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
   <mat-toolbar-row>
     <span>Logo</span>
-        <a routerLink="/admin-equipment" routerLinkActive="active" ><button mat-raised-button  class="navButton">Admin equipment
-        </button></a>
-        <a routerLink="/admin-employees" ><button mat-raised-button  class="navButton">Admin employees
-        </button></a>
-        <a routerLink="/admin-projects" ><button mat-raised-button  class="navButton">Admin projects
-        </button></a>
-        <a routerLink="/user-projects" ><button mat-raised-button  class="navButton">User Project
-        </button></a>
-        <a routerLink="/user-details" ><button mat-raised-button  class="navButton">User Details
-        </button></a>
     <span class="example-spacer">
     </span>
-   <a routerLink="/main"> <mat-icon class="example-icon">person</mat-icon></a>
+    <a (click)="openDialog()">
+      <button mat-button color="primary">
+        <h3>Login</h3>
+        <mat-icon class="example-icon">person</mat-icon>
+      </button>
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
-
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  <ng-container matColumnDef="projectName">
+    <th mat-header-cell *matHeaderCellDef> Project Name </th>
+    <td mat-cell *matCellDef="let element"><a (click)="nextPage(element._id, element.name)">{{element.name}} </a></td>
   </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  <ng-container matColumnDef="employees">
+    <th mat-header-cell *matHeaderCellDef> #Employees </th>
+    <td mat-cell *matCellDef="let element"> {{element.employees}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  <ng-container matColumnDef="equipment">
+    <th mat-header-cell *matHeaderCellDef> #Equipment </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  <ng-container matColumnDef="fromDate">
+    <th mat-header-cell *matHeaderCellDef> From Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.fromDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="toDate">
+    <th mat-header-cell *matHeaderCellDef> To Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.toDate}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
