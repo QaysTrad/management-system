@@ -4,14 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MainComponent} from './main/main.component';
 import { AdminEquipmentComponent, DialogDataEquipment, DialogDataUpdateEquipment } from './admin-equipment/admin-equipment.component';
 import { AdminEmployeesComponent, DialogDataEmployees, DialogDataUpdateEmployees } from './admin-employees/admin-employees.component';
 import { AdminProjectsComponent, DialogDataProjects, DialogDataUpdateProjects } from './admin-projects/admin-projects.component';
-import { UserProjectsComponent } from './user-projects/user-projects.component';
+import { UserProjectsComponent, DialogDataLogin } from './user-projects/user-projects.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgDragDropModule } from 'ng-drag-drop';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,32 +24,33 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 
 const appRoutes: Routes = [
-  { path: '',
+  {
+    path: '',
     component: HomeComponent
-  }, 
-  {
-    path:'main',
-    component: MainComponent
   },
   {
-    path:'admin-equipment',
-    component:AdminEquipmentComponent
+    path: 'home',
+    component: HomeComponent
   },
   {
-    path:'admin-employees',
-    component:AdminEmployeesComponent
+    path: 'admin-equipment',
+    component: AdminEquipmentComponent
   },
   {
-    path:'admin-projects',
-    component:AdminProjectsComponent
+    path: 'admin-employees',
+    component: AdminEmployeesComponent
   },
   {
-    path:'user-projects',
-    component:UserProjectsComponent
+    path: 'admin-projects',
+    component: AdminProjectsComponent
   },
   {
-    path:'user-details',
-    component:UserDetailsComponent
+    path: 'user-projects',
+    component: UserProjectsComponent
+  },
+  {
+    path: 'user-details',
+    component: UserDetailsComponent
   }
 ]
 
@@ -58,7 +58,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MainComponent,
     AdminEquipmentComponent,
     AdminEmployeesComponent,
     AdminProjectsComponent,
@@ -69,7 +68,8 @@ const appRoutes: Routes = [
     DialogDataEmployees,
     DialogDataUpdateEmployees,
     DialogDataProjects,
-    DialogDataUpdateProjects
+    DialogDataUpdateProjects,
+    DialogDataLogin
   ],
   imports: [
     BrowserModule,
@@ -88,28 +88,29 @@ const appRoutes: Routes = [
     MatCardModule
   ],
   exports: [
-   BrowserModule,
-   BrowserAnimationsModule,
-   NoopAnimationsModule,
-   MatButtonModule,
-   MatCheckboxModule,
-   MatInputModule,
-   MatIconModule,
-   MatDialogModule,
-   MatToolbarModule,
-   MatTableModule,
-   FormsModule,
-   MatCardModule
-   ],
+    BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatIconModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatTableModule,
+    FormsModule,
+    MatCardModule
+  ],
   entryComponents: [
-   AdminEquipmentComponent,
-   DialogDataEquipment, 
-   DialogDataEmployees, 
-   DialogDataProjects,
-   DialogDataUpdateProjects,
-   DialogDataUpdateEmployees,
-   DialogDataUpdateEquipment
-   ],
+    AdminEquipmentComponent,
+    DialogDataEquipment,
+    DialogDataEmployees,
+    DialogDataProjects,
+    DialogDataUpdateProjects,
+    DialogDataUpdateEmployees,
+    DialogDataUpdateEquipment,
+    DialogDataLogin
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
