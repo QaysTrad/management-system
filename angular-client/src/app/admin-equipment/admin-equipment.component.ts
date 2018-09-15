@@ -12,7 +12,7 @@ export interface DialogData {
   styleUrls: ['./admin-equipment.component.css']
 })
 export class AdminEquipmentComponent implements OnInit {
- equipData = [];
+  equipData = [];
   constructor(private router: Router,
     public dialog: MatDialog) { }
 
@@ -26,18 +26,12 @@ export class AdminEquipmentComponent implements OnInit {
 
   updateDialog(id) {
     this.dialog.open(DialogDataUpdateEquipment, {
-      data: {id: id}
+      data: { id: id }
     });
   }
 
   logout() {
-    Axios.get('/logout')
-      .then(() => {
-        this.router.navigate(['home'])
-      })
-      .catch((err) => {
-        throw err;
-      })
+    this.router.navigate(['home'])
   }
 
   getEquip(equipData = []) {
@@ -52,14 +46,14 @@ export class AdminEquipmentComponent implements OnInit {
       })
   }
 
-  deteleEquip(id){
-    Axios.post('/deteleEquip', {id})
-    .then(() => {
-      console.log('done');
-    })
-    .catch((err) => {
-      throw err;
-    })
+  deteleEquip(id) {
+    Axios.post('/deteleEquip', { id })
+      .then(() => {
+        console.log('done');
+      })
+      .catch((err) => {
+        throw err;
+      })
   }
 }
 
@@ -77,7 +71,7 @@ export class DialogDataEquipment {
     this.dialogRef.close();
   }
 
- uploadImage = (event) => {
+  uploadImage = (event) => {
     let img = event.target.files[0];
     let that = this
     let fileReader = new FileReader();
@@ -88,7 +82,7 @@ export class DialogDataEquipment {
   }
 
   Add(name, serialNumber) {
-    Axios.post('/addEquip', { name, serialNumber , image:this.image})
+    Axios.post('/addEquip', { name, serialNumber, image: this.image })
       .then(function () {
         console.log('done');
       })
@@ -99,7 +93,7 @@ export class DialogDataEquipment {
 }
 
 @Component({
-   selector: 'dialog-data-update-equipment',
+  selector: 'dialog-data-update-equipment',
   templateUrl: 'dialog-data-update-equipment.html',
 })
 export class DialogDataUpdateEquipment {
@@ -111,13 +105,13 @@ export class DialogDataUpdateEquipment {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  Update(id, name, serialNumber){
-    Axios.post('/updateEquip',{id :id, name:name , serialNumber:serialNumber })
-    .then(() => {
-      console.log('done update');
-    })
-    .catch((err) => {
-      throw err;
-    })
+  Update(id, name, serialNumber) {
+    Axios.post('/updateEquip', { id: id, name: name, serialNumber: serialNumber })
+      .then(() => {
+        console.log('done update');
+      })
+      .catch((err) => {
+        throw err;
+      })
   }
 }
