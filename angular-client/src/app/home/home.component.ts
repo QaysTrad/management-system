@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+export interface DialogData {
+  name: string;
+  serialNumber: string;
+  attachment: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -7,15 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router) { }
-
+  constructor() { }
 
   ngOnInit() {
-       setTimeout(() => {
-        this.router.navigate(['main'])
-       }, 1000);
   }
-
-
 }
