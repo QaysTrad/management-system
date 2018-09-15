@@ -13,7 +13,7 @@ export interface DialogData {
 })
 export class AdminProjectsComponent implements OnInit {
   proData = [];
-  
+
   constructor(private router: Router,
     public dialog: MatDialog) { }
 
@@ -24,42 +24,36 @@ export class AdminProjectsComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogDataProjects);
   }
-  updateDialog(id){
+  updateDialog(id) {
     this.dialog.open(DialogDataUpdateProjects, {
-      data: {id: id}
+      data: { id: id }
     });
   }
 
   logout() {
-    Axios.get('/logout')
+    this.router.navigate(['home'])
+  }
+
+  projectData(proData = []) {
+    Axios.get('/getProject')
+      .then((data) => {
+        for (var i = 0; i < data.data.length; i++) {
+          proData.push(data.data[i])
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  deleteProject(id) {
+    Axios.post('/deletePro', { id })
       .then(() => {
-        this.router.navigate(['home'])
+        console.log('deleted');
       })
       .catch((err) => {
         throw err;
       })
-  }
-  
-  projectData(proData = []){
-    Axios.get('/getProject')
-    .then((data) => {
-      for(var i = 0 ; i<data.data.length;i++){
-        proData.push(data.data[i])
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
-  deleteProject(id){
-    Axios.post('/deletePro', {id})
-    .then(() => {
-      console.log('deleted');
-    })
-    .catch((err) => {
-      throw err; 
-    })
   }
 }
 
@@ -101,9 +95,9 @@ export class DialogDataUpdateProjects {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  
-  Update(id, name, type, from, to){
-       Axios.post('/updateProject', { id, name, type, from, to })
+
+  Update(id, name, type, from, to) {
+    Axios.post('/updateProject', { id, name, type, from, to })
       .then(() => {
         console.log('done');
       })
