@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import Axios from 'axios';
 
+// this interface to send data to the dialog if it's required
 export interface DialogData {
 }
 
@@ -20,20 +21,24 @@ export class AdminEquipmentComponent implements OnInit {
     this.getEquip(this.equipData)
   }
 
+  //this function to open the add equipment dialog
   openDialog() {
     this.dialog.open(DialogDataEquipment);
   }
 
+  //this function to open the update equipment dialog
   updateDialog(id) {
     this.dialog.open(DialogDataUpdateEquipment, {
       data: { id: id }
     });
   }
 
+  //this function to out from the page
   logout() {
     this.router.navigate(['home'])
   }
 
+  //this function to retreve the data from the server
   getEquip(equipData = []) {
     Axios.get('/getEquip')
       .then((data) => {
@@ -46,6 +51,7 @@ export class AdminEquipmentComponent implements OnInit {
       })
   }
 
+  //this function to delete an equipment from the server
   deteleEquip(id) {
     Axios.post('/deteleEquip', { id })
       .then(() => {
@@ -57,6 +63,8 @@ export class AdminEquipmentComponent implements OnInit {
   }
 }
 
+// this the update dialog
+// this the add dialog
 @Component({
   selector: 'dialog-data-equipment',
   templateUrl: 'dialog-data-equipment.html',
@@ -70,7 +78,7 @@ export class DialogDataEquipment {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  //this function to upload picture from the user
   uploadImage = (event) => {
     let img = event.target.files[0];
     let that = this
@@ -81,6 +89,7 @@ export class DialogDataEquipment {
     }
   }
 
+  //this function to add an equipment from the server
   Add(name, serialNumber) {
     Axios.post('/addEquip', { name, serialNumber, image: this.image })
       .then(function () {
@@ -92,6 +101,7 @@ export class DialogDataEquipment {
   }
 }
 
+// this the update dialog
 @Component({
   selector: 'dialog-data-update-equipment',
   templateUrl: 'dialog-data-update-equipment.html',
@@ -105,6 +115,7 @@ export class DialogDataUpdateEquipment {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  //this function to update an equipment from the server
   Update(id, name, serialNumber) {
     Axios.post('/updateEquip', { id: id, name: name, serialNumber: serialNumber })
       .then(() => {
