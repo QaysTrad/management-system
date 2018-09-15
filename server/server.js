@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, '../angular-client/dist/angular-client')))
 
+//this function to add Equipment to the database
 app.post('/addEquip', (req, res) => {
     let name = req.body.name;
     let serialNumber = req.body.serialNumber;
@@ -27,6 +28,7 @@ app.post('/addEquip', (req, res) => {
     });
 })
 
+//this function to delete Equipment from the database by equipment id  
 app.post('/deteleEquip', (req, res) => {
     id = req.body.id;
 
@@ -39,6 +41,7 @@ app.post('/deteleEquip', (req, res) => {
     })
 })
 
+//this function to update on Equipment from the database by equipment id
 app.post('/updateEquip', (req, res) => {
     let id = req.body.id
     let name = req.body.name;
@@ -56,6 +59,7 @@ app.post('/updateEquip', (req, res) => {
     });
 })
 
+//this function to retreve data from the database to the front page 
 app.get('/getEquip', (req, res) => {
     db.equipmentSchema.find({}, (err, data) => {
         if (err) {
@@ -66,6 +70,7 @@ app.get('/getEquip', (req, res) => {
     })
 })
 
+//this function to add Employees to the database
 app.post('/addEmp', (req, res) => {
     const name = req.body.name;
     const nationality = req.body.nationality;
@@ -84,6 +89,7 @@ app.post('/addEmp', (req, res) => {
     })
 })
 
+//this function to delete Emplyees from the database by employee id  
 app.post('/deleteEmploy', (req, res) => {
     const id = req.body.id;
 
@@ -95,6 +101,7 @@ app.post('/deleteEmploy', (req, res) => {
     })
 })
 
+//this function to update on Employees from the database by employee id
 app.post('/updateEmp', (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
@@ -114,6 +121,7 @@ app.post('/updateEmp', (req, res) => {
     });
 })
 
+//this function to retreve data from the database to the front page 
 app.get('/getEmp', (req, res) => {
     db.employeesSchema.find({}, (err, data) => {
         if (err) {
@@ -123,6 +131,7 @@ app.get('/getEmp', (req, res) => {
     })
 })
 
+//this function to add Projects to the database
 app.post('/addProject', (req, res) => {
     const name = req.body.name;
     const type = req.body.type;
@@ -143,7 +152,7 @@ app.post('/addProject', (req, res) => {
     })
 })
 
-
+//this function to update on Projects from the database by project id
 app.post('/updateProject', (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
@@ -164,6 +173,7 @@ app.post('/updateProject', (req, res) => {
     });
 })
 
+//this function to delete Project from the database by project id  
 app.post('/deletePro', (req, res) => {
     const id = req.body.id;
 
@@ -175,6 +185,7 @@ app.post('/deletePro', (req, res) => {
     })
 })
 
+//this function to retreve data from the database to the front page 
 app.get('/getProject', (req, res) => {
     db.projectsSchema.find({}, (err, data) => {
         if (err) {
@@ -184,6 +195,7 @@ app.get('/getProject', (req, res) => {
     })
 })
 
+//this function save to the project after drag and drop
 app.post('/saveProject', (req, res) => {
     const id = req.body.id;
     const Equipment = req.body.Equipment;
@@ -201,6 +213,7 @@ app.post('/saveProject', (req, res) => {
     });
 })
 
+//this function to show the data that came from the front page
 app.get('/*', function (req, res) {
     res.sendFile(path.resolve(path.join(__dirname, '../angular-client/dist/angular-client/index.html')))
 })
