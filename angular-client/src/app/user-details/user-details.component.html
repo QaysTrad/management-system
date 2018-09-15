@@ -1,64 +1,53 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
     <mat-toolbar-row>
         <span>Logo</span>
-        <a routerLink="/user-project" routerLinkActive="active"><button mat-raised-button class="navButton">User
-                Project
-            </button></a>
-        <a routerLink="/user-details"><button mat-raised-button class="navButton">User Details
-            </button></a>
-        <span class="example-spacer">
-        </span>
-        <a (click)="openDialog()">
-            <mat-icon class="example-icon">person</mat-icon>
-        </a>
     </mat-toolbar-row>
 </mat-toolbar>
+<h1>Project Name : {{name}}</h1>
 
-<h1>Prject Name</h1>
-<h3>Employees</h3>
-<div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">System Employees</div>
-            <ul class="list-group">
-                <li draggable *ngFor="let item of empData" [dragData]="item" class="list-group-item">{{item.name}}</li>
-            </ul>
+<div class="container">
+    <h3>Employees</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">System Employees</div>
+                <ul class="list-group">
+                    <li draggable *ngFor="let item of empData" [dragData]="item" class="list-group-item">{{item.name}}</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="col-sm-3">
-        <div class="panel panel-default" droppable (onDrop)="onItemDropEmp($event)">
-            <div class="panel-heading">Assigned Employees</div>
-            <div class="panel-body">
-                <li *ngFor="let item of droppedEmp" class="list-group-item">{{item.name}}</li>
+        <div class="col-sm-3">
+            <div class="panel panel-default" droppable (onDrop)="onItemDropEmp($event)">
+                <div class="panel-heading">Assigned Employees</div>
+                <div class="panel-body">
+                    <li *ngFor="let item of droppedEmp" class="list-group-item">{{item.name}}</li>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<br>
-<br>
-
-<h3>Equipment</h3>
-<div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">System Equipment</div>
-            <ul class="list-group">
-                <li draggable *ngFor="let item of equipData" [dragData]="item" class="list-group-item">{{item.name}}</li>
-            </ul>
+    <br>
+    <br>
+    <h3>Equipment</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">System Equipment</div>
+                <ul class="list-group">
+                    <li draggable *ngFor="let item of equipData" [dragData]="item" class="list-group-item">{{item.name}}</li>
+                </ul>
+            </div>
         </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="panel panel-default" droppable (onDrop)="onItemDropEquip($event)">
-            <div class="panel-heading">Assigned Equipment</div>
-            <div class="panel-body">
-                <li *ngFor="let item of droppedEquip" class="list-group-item">{{item.name}}</li>
+        <div class="col-sm-3">
+            <div class="panel panel-default" droppable (onDrop)="onItemDropEquip($event)">
+                <div class="panel-heading">Assigned Equipment</div>
+                <div class="panel-body">
+                    <li *ngFor="let item of droppedEquip" class="list-group-item">{{item.name}}</li>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<a routerLink="/user-project"><button mat-raised-button color="accent">Back</button></a>
-<button mat-raised-button color="accent" (click)="save()">Save</button>
+    <a routerLink="/home"><button class="btn" mat-raised-button color="accent">Back</button></a>
+    <button class="btn" mat-raised-button color="accent" (click)="save(droppedEquip, droppedEmp)">Save</button>
+</div>

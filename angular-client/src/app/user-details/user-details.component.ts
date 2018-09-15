@@ -1,7 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import Axios from 'axios';
+import { jackel } from '../user-projects/user-projects.component';
+import { Router } from '@angular/router';
+
+export interface DialogData {
+}
 
 @Component({
   selector: 'app-user-details',
@@ -13,16 +16,16 @@ export class UserDetailsComponent implements OnInit {
   droppedEquip = [];
   empData = [];
   equipData = [];
+  id = '';
+  name = '';
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.getEmploy(this.empData);
     this.getEquip(this.equipData);
-  }
-
-  openDialog() {
-    // this.dialog.open(DialogDataLogin2);
+    this.name = jackel['name'];
+    this.id = jackel['id']
   }
 
   getEquip(equipData = []) {
@@ -50,14 +53,53 @@ export class UserDetailsComponent implements OnInit {
   }
   onItemDropEmp(e: any) {
     // Get the dropped data here
-    this.droppedEmp.push(e.dragData);
+    if (this.droppedEmp.length === 0) {
+      for (var i = 0; i < this.empData.length; i++) {
+        if (e.dragData.name === this.empData[i].name) {
+          this.droppedEmp.push(e.dragData);
+          this.removeEmp(e.dragData, this.empData)
+        }
+      }
+    } else {
+      alert("there's already an Employee")
+    }
   }
   onItemDropEquip(e: any) {
     // Get the dropped data here
-    this.droppedEquip.push(e.dragData);
+    if (this.droppedEquip.length === 0) {
+      for (var i = 0; i < this.equipData.length; i++) {
+        if (e.dragData.name === this.equipData[i].name) {
+          this.droppedEquip.push(e.dragData);
+          this.removeEquip(e.dragData, this.equipData);
+        }
+      }
+    } else {
+      alert("there's already an Equipment")
+    }
+
   }
 
-  save(){
+  save(droppedEquip = [], droppedEmp = []) {
+    Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
+      .then(() => {
+        console.log('done')
+        this.router.navigate(['home']);
+      })
+      .catch((err) => {
+        throw err;
+      })
+  }
+  removeEquip(item: any, list: Array<any>) {
+    let index = list.map(function (e) {
+      return e.name
+    }).indexOf(item.name);
+    list.splice(index, 1);
+  }
+
+  removeEmp(item: any, list: Array<any>) {
+    let index = list.map(function (e) {
+      return e.name
+    }).indexOf(item.name);
+    list.splice(index, 1);
   }
 }
-
