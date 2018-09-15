@@ -3,7 +3,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import Axios from 'axios';
 
+//global variable to send the data to other component
 export var jackel = {}
+// this interface to send data to the dialog if it's required
 export interface DialogData {
 }
 
@@ -25,11 +27,13 @@ export class UserProjectsComponent implements OnInit {
   ngOnInit() {
     this.projectData(this.proData);
   }
-
+  
+  //this function to open the login dialog
   openDialog() {
     this.dialog.open(DialogDataLogin);
   }
-
+  
+  //this function to retreve the data from the server
   projectData(proData = []) {
     Axios.get('/getProject')
       .then((data) => {
@@ -42,12 +46,14 @@ export class UserProjectsComponent implements OnInit {
         throw err;
       })
   }
+  //this function to go to th user details page and send the id and name of te project that been selected
   nextPage(id, name) {
     this.router.navigate(['user-details']);
     jackel = { id: id, name: name }
   }
 }
 
+//this is login dialog
 @Component({
   selector: 'dialog-data-login',
   templateUrl: 'dialog-data-login.html',

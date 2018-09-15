@@ -40,6 +40,7 @@ export class UserDetailsComponent implements OnInit {
       })
   }
 
+  //this function to retreve the data from the server
   getEmploy(empData = []) {
     Axios.get('/getEmp')
       .then((data) => {
@@ -51,8 +52,9 @@ export class UserDetailsComponent implements OnInit {
         throw err;
       })
   }
+
+  //this function to get data from the dropped object
   onItemDropEmp(e: any) {
-    // Get the dropped data here
     if (this.droppedEmp.length === 0) {
       for (var i = 0; i < this.empData.length; i++) {
         if (e.dragData.name === this.empData[i].name) {
@@ -64,6 +66,7 @@ export class UserDetailsComponent implements OnInit {
       alert("there's already an Employee")
     }
   }
+
   onItemDropEquip(e: any) {
     // Get the dropped data here
     if (this.droppedEquip.length === 0) {
@@ -79,6 +82,7 @@ export class UserDetailsComponent implements OnInit {
 
   }
 
+  //this function to save the dropped items in the database
   save(droppedEquip = [], droppedEmp = []) {
     Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
       .then(() => {
@@ -89,6 +93,7 @@ export class UserDetailsComponent implements OnInit {
         throw err;
       })
   }
+  //outer function to remove the item the has be dragged
   removeEquip(item: any, list: Array<any>) {
     let index = list.map(function (e) {
       return e.name

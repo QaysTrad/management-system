@@ -63,7 +63,6 @@ export class AdminEquipmentComponent implements OnInit {
   }
 }
 
-// this the update dialog
 // this the add dialog
 @Component({
   selector: 'dialog-data-equipment',
