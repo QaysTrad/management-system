@@ -82,11 +82,10 @@ export class UserDetailsComponent implements OnInit {
 
   }
   //this function to save the dropped items in the database
+  
   save(droppedEquip = [], droppedEmp = []) {
-     if (this.droppedEquipment[0].name.length === 0 && this.droppedEmployee[0].name.length === 0) {
+     if (this.droppedEquip[0].name.length === 0 && this.droppedEmp[0].name.length === 0) {
       alert('please assign employee and equipment before save <3 ')
-      this.droppedEmployee.pop()
-      this.droppedEquipment.pop()
     } else {
     Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
       .then(() => {
