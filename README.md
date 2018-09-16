@@ -28,3 +28,13 @@ This project make you as an admin add equipments and employees and projects, and
 
   * MongoDB
     Go to the project repo and run `mongod`
+
+  ### Deployment
+
+  * heruko `https://mangesystem.herokuapp.com/`
+  * See the website [here](https://mangesystem.herokuapp.com/)
+
+  ### Login
+
+  * The admin usernmae : `admin`
+  * The admin password : `admin`
