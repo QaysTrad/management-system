@@ -5,8 +5,8 @@ const db = require('../database/index');
 
 const app = express();
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(express.static(path.join(__dirname, '../angular-client/dist/angular-client')))
 
@@ -14,16 +14,18 @@ app.use(express.static(path.join(__dirname, '../angular-client/dist/angular-clie
 app.post('/addEquip', (req, res) => {
     let name = req.body.name;
     let serialNumber = req.body.serialNumber;
+    let image = req.body.image;
 
     let equip = new db.equipmentSchema({
         name: name,
-        serialNumber: serialNumber
+        serialNumber: serialNumber,
+        attachment: image
     });
     equip.save((err, data) => {
         if (err) {
             throw err;
         } else {
-            console.log('saved!');
+            res.sendStatus(200);
         }
     });
 })
@@ -31,7 +33,7 @@ app.post('/addEquip', (req, res) => {
 
 //this function to delete Equipment from the database by equipment id  
 app.post('/deteleEquip', (req, res) => {
-    id = req.body.id;
+    let id = req.body.id;
 
     db.equipmentSchema.findOneAndRemove({ _id: id }, (err, data) => {
         if (err) {
@@ -221,7 +223,7 @@ app.get('/*', function (req, res) {
 
 const port = process.env.PORT || 3000;
 if (!module.parent) {
-    app.listen(port, () =>{
+    app.listen(port, () => {
         console.log(`listening on port ${port}!`);
-        })
-    } 
+    })
+} 

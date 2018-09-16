@@ -82,19 +82,21 @@ export class UserDetailsComponent implements OnInit {
 
   }
   //this function to save the dropped items in the database
-  
+
   save(droppedEquip = [], droppedEmp = []) {
-     if (this.droppedEquip[0].name.length === 0 && this.droppedEmp[0].name.length === 0) {
-      alert('please assign employee and equipment before save <3 ')
+    if (this.droppedEmp[0] === undefined) {
+      alert('please assign employee before');
+    } else if (this.droppedEquip[0] === undefined) {
+      alert('please assign equipment before');
     } else {
-    Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
-      .then(() => {
-        console.log('done')
-        this.router.navigate(['home']);
-      })
-      .catch((err) => {
-        throw err;
-      })
+      Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
+        .then(() => {
+          console.log('done')
+          this.router.navigate(['home']);
+        })
+        .catch((err) => {
+          throw err;
+        })
     }
   }
   //outer function to remove the item the has be dragged

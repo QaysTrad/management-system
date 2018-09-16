@@ -84,8 +84,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTableModule,
     FormsModule,
-    NgDragDropModule,
-    MatCardModule
+    MatCardModule,
+    NgDragDropModule.forRoot()
   ],
   exports: [
     BrowserModule,
@@ -99,7 +99,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTableModule,
     FormsModule,
-    MatCardModule
+    NgDragDropModule,
+    MatCardModule,
   ],
   entryComponents: [
     AdminEquipmentComponent,

@@ -243,7 +243,7 @@ module.exports = ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of equipData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deleteEquip(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Nationality: {{item.serialNumber}}</mat-card-subtitle>\n          </mat-card-header>\n          <img mat-card-image src=\"{{item.attachment}}\" alt=\"Photo\">  \n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of equipData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deteleEquip(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Nationality: {{item.serialNumber}}</mat-card-subtitle>\n          </mat-card-header>\n          <img mat-card-image src=\"{{item.attachment}}\" alt=\"Photo\">  \n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -361,9 +361,12 @@ var DialogDataEquipment = /** @class */ (function () {
     };
     //this function to add an equipment from the server
     DialogDataEquipment.prototype.Add = function (name, serialNumber) {
+        if (name === void 0) { name = ''; }
+        if (serialNumber === void 0) { serialNumber = ''; }
         axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/addEquip', { name: name, serialNumber: serialNumber, image: this.image })
             .then(function () {
             console.log('done');
+            window.location.reload();
         })
             .catch(function (err) {
             throw err;
@@ -815,8 +818,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_17__["MatToolbarModule"],
                 _angular_material_table__WEBPACK_IMPORTED_MODULE_18__["MatTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
-                ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"]
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"],
+                ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"].forRoot()
             ],
             exports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -830,7 +833,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_17__["MatToolbarModule"],
                 _angular_material_table__WEBPACK_IMPORTED_MODULE_18__["MatTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"]
+                ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"],
             ],
             entryComponents: [
                 _admin_equipment_admin_equipment_component__WEBPACK_IMPORTED_MODULE_5__["AdminEquipmentComponent"],
@@ -1040,8 +1044,11 @@ var UserDetailsComponent = /** @class */ (function () {
         var _this = this;
         if (droppedEquip === void 0) { droppedEquip = []; }
         if (droppedEmp === void 0) { droppedEmp = []; }
-        if (this.droppedEquip[0].name.length === 0 && this.droppedEmp[0].name.length === 0) {
-            alert('please assign employee and equipment before save <3 ');
+        if (this.droppedEmp[0] === undefined) {
+            alert('please assign employee before');
+        }
+        else if (this.droppedEquip[0] === undefined) {
+            alert('please assign equipment before');
         }
         else {
             axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })

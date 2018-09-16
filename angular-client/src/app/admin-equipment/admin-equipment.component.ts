@@ -83,18 +83,19 @@ export class DialogDataEquipment {
     let that = this
     let fileReader = new FileReader();
     fileReader.readAsDataURL(img);
-    fileReader.onload = function (e) {
+    fileReader.onload = function (e: any) {
       that.image = e.target.result;
     }
   }
 
   //this function to add an equipment from the server
-  Add(name, serialNumber) {
+  Add(name = '', serialNumber= '') {
     Axios.post('/addEquip', { name, serialNumber, image: this.image })
-      .then(function () {
+      .then(() => {
         console.log('done');
+        window.location.reload();
       })
-      .catch(function (err) {
+      .catch((err) => {
         throw err;
       })
   }
