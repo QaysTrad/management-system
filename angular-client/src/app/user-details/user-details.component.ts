@@ -84,6 +84,7 @@ export class UserDetailsComponent implements OnInit {
   //this function to save the dropped items in the database
 
   save(droppedEquip = [], droppedEmp = []) {
+    var x = this
     if (this.droppedEmp[0] === undefined) {
       alert('please assign employee before');
     } else if (this.droppedEquip[0] === undefined) {
@@ -92,7 +93,7 @@ export class UserDetailsComponent implements OnInit {
       Axios.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
         .then(() => {
           console.log('done')
-          this.router.navigate(['home']);
+          x.router.navigate(['home']);
         })
         .catch((err) => {
           throw err;

@@ -41,7 +41,7 @@ module.exports = ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\r\n  <mat-toolbar-row>\r\n    <span>Logo</span>\r\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\r\n        equipment\r\n      </button></a>\r\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\r\n      </button></a>\r\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\r\n      </button></a>\r\n    <span class=\"example-spacer\">\r\n    </span>\r\n    <a>\r\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\r\n    </a>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>\r\n<br>\r\n<br>\r\n<div class=\"container\">\r\n<button mat-fab color=\"accent\" (click)=\"openDialog()\">\r\n  <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\r\n</button>\r\n<br>\r\n<br>\r\n<br>\r\n\r\n  <div class=\"row\">\r\n    <div *ngFor=\"let item of empData\">\r\n      <div class=\"col-sm-6\">\r\n        <mat-card class=\"example-card\">\r\n          <mat-card-actions>\r\n              <button mat-icon-button mat-button (click)=\"deleteEmp(item._id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\r\n                </button>\r\n                <button mat-icon-button (click)=\"updateDialog(item.id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\r\n                </button>\r\n          </mat-card-actions>\r\n          <mat-card-header>\r\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\r\n            <mat-card-subtitle>Nationality: {{item.nationality}}</mat-card-subtitle>\r\n            <mat-card-subtitle>Job Title: {{item.jobTitle}}</mat-card-subtitle>\r\n          </mat-card-header>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<mat-toolbar color=\"accent\">\r\n  <mat-toolbar-row>\r\n    <span>Logo</span>\r\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\r\n        equipment\r\n      </button></a>\r\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\r\n      </button></a>\r\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\r\n      </button></a>\r\n    <span class=\"example-spacer\">\r\n    </span>\r\n    <a>\r\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\r\n    </a>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>\r\n<br>\r\n<br>\r\n<div class=\"container\">\r\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\r\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\r\n  </button>\r\n  <br>\r\n  <br>\r\n  <br>\r\n\r\n  <div class=\"row\">\r\n    <div *ngFor=\"let item of empData\">\r\n      <div class=\"col-sm-6\">\r\n        <mat-card class=\"example-card\">\r\n          <mat-card-actions>\r\n            <button mat-icon-button mat-button (click)=\"deleteEmp(item._id)\">\r\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\r\n            </button>\r\n            <button mat-icon-button (click)=\"updateDialog(item.id)\">\r\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\r\n            </button>\r\n          </mat-card-actions>\r\n          <mat-card-header>\r\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\r\n            <mat-card-subtitle>Nationality: {{item.nationality}}</mat-card-subtitle>\r\n            <mat-card-subtitle>Job Title: {{item.jobTitle}}</mat-card-subtitle>\r\n          </mat-card-header>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1041,9 +1041,9 @@ var UserDetailsComponent = /** @class */ (function () {
     };
     //this function to save the dropped items in the database
     UserDetailsComponent.prototype.save = function (droppedEquip, droppedEmp) {
-        var _this = this;
         if (droppedEquip === void 0) { droppedEquip = []; }
         if (droppedEmp === void 0) { droppedEmp = []; }
+        var x = this;
         if (this.droppedEmp[0] === undefined) {
             alert('please assign employee before');
         }
@@ -1054,7 +1054,7 @@ var UserDetailsComponent = /** @class */ (function () {
             axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/saveProject", { id: this.id, Employee: droppedEmp[0].name, Equipment: droppedEquip[0].name })
                 .then(function () {
                 console.log('done');
-                _this.router.navigate(['home']);
+                x.router.navigate(['home']);
             })
                 .catch(function (err) {
                 throw err;

@@ -18,24 +18,24 @@
 <br>
 <br>
 <div class="container">
-<button mat-fab color="accent" (click)="openDialog()">
-  <mat-icon aria-label="Example icon-button with a plus icon">add</mat-icon>
-</button>
-<br>
-<br>
-<br>
+  <button mat-fab color="accent" (click)="openDialog()">
+    <mat-icon aria-label="Example icon-button with a plus icon">add</mat-icon>
+  </button>
+  <br>
+  <br>
+  <br>
 
   <div class="row">
     <div *ngFor="let item of empData">
       <div class="col-sm-6">
         <mat-card class="example-card">
           <mat-card-actions>
-              <button mat-icon-button mat-button (click)="deleteEmp(item._id)">
-                  <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
-                </button>
-                <button mat-icon-button (click)="updateDialog(item.id)">
-                  <mat-icon aria-label="Example icon-button with a heart icon">update</mat-icon>
-                </button>
+            <button mat-icon-button mat-button (click)="deleteEmp(item._id)">
+              <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="updateDialog(item.id)">
+              <mat-icon aria-label="Example icon-button with a heart icon">update</mat-icon>
+            </button>
           </mat-card-actions>
           <mat-card-header>
             <mat-card-title>Name : {{item.name}}</mat-card-title>
