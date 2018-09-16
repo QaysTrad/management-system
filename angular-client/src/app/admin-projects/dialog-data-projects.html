@@ -8,12 +8,18 @@
     <input matInput type="text" placeholder="Project type" [(ngModel)]="type">
   </mat-form-field>
   <br>
-  <mat-form-field class="example-full-width">
-    <input matInput type="date" placeholder="Project from" [(ngModel)]="from">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker1" placeholder="Project from" [(ngModel)]="from">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput type="date" placeholder="Project to" [(ngModel)]="to">
+  
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Project to" [(ngModel)]="to">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

@@ -15,13 +15,18 @@ import { NgDragDropModule } from 'ng-drag-drop';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatIconModule,
+  MatDialogModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from '@angular/material';
 
 const appRoutes: Routes = [
   {
@@ -85,7 +90,9 @@ const appRoutes: Routes = [
     MatTableModule,
     FormsModule,
     MatCardModule,
-    NgDragDropModule.forRoot()
+    NgDragDropModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     BrowserModule,
@@ -101,6 +108,9 @@ const appRoutes: Routes = [
     FormsModule,
     NgDragDropModule,
     MatCardModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   entryComponents: [
     AdminEquipmentComponent,

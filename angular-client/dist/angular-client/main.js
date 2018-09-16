@@ -41,7 +41,7 @@ module.exports = ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\r\n  <mat-toolbar-row>\r\n    <span>Logo</span>\r\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\r\n        equipment\r\n      </button></a>\r\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\r\n      </button></a>\r\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\r\n      </button></a>\r\n    <span class=\"example-spacer\">\r\n    </span>\r\n    <a>\r\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\r\n    </a>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>\r\n<br>\r\n<br>\r\n<div class=\"container\">\r\n<button mat-fab color=\"accent\" (click)=\"openDialog()\">\r\n  <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\r\n</button>\r\n<br>\r\n<br>\r\n<br>\r\n\r\n  <div class=\"row\">\r\n    <div *ngFor=\"let item of empData\">\r\n      <div class=\"col-sm-6\">\r\n        <mat-card class=\"example-card\">\r\n          <mat-card-actions>\r\n              <button mat-icon-button mat-button (click)=\"deleteEmp(item._id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\r\n                </button>\r\n                <button mat-icon-button (click)=\"updateDialog(item.id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\r\n                </button>\r\n          </mat-card-actions>\r\n          <mat-card-header>\r\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\r\n            <mat-card-subtitle>Nationality: {{item.nationality}}</mat-card-subtitle>\r\n          </mat-card-header>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<mat-toolbar color=\"accent\">\r\n  <mat-toolbar-row>\r\n    <span>Logo</span>\r\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\r\n        equipment\r\n      </button></a>\r\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\r\n      </button></a>\r\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\r\n      </button></a>\r\n    <span class=\"example-spacer\">\r\n    </span>\r\n    <a>\r\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\r\n    </a>\r\n  </mat-toolbar-row>\r\n</mat-toolbar>\r\n<br>\r\n<br>\r\n<div class=\"container\">\r\n<button mat-fab color=\"accent\" (click)=\"openDialog()\">\r\n  <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\r\n</button>\r\n<br>\r\n<br>\r\n<br>\r\n\r\n  <div class=\"row\">\r\n    <div *ngFor=\"let item of empData\">\r\n      <div class=\"col-sm-6\">\r\n        <mat-card class=\"example-card\">\r\n          <mat-card-actions>\r\n              <button mat-icon-button mat-button (click)=\"deleteEmp(item._id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\r\n                </button>\r\n                <button mat-icon-button (click)=\"updateDialog(item.id)\">\r\n                  <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\r\n                </button>\r\n          </mat-card-actions>\r\n          <mat-card-header>\r\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\r\n            <mat-card-subtitle>Nationality: {{item.nationality}}</mat-card-subtitle>\r\n            <mat-card-subtitle>Job Title: {{item.jobTitle}}</mat-card-subtitle>\r\n          </mat-card-header>\r\n        </mat-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -243,7 +243,7 @@ module.exports = ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of equipData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deteleEquip(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Nationality: {{item.serialNumber}}</mat-card-subtitle>\n          </mat-card-header>\n          <img mat-card-image src=\"{{item.attachment}}\" alt=\"Photo\">  \n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of equipData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deteleEquip(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Serial Number : {{item.serialNumber}}</mat-card-subtitle>\n          </mat-card-header>\n          <img mat-card-image src=\"{{item.attachment}}\" alt=\"Photo\">  \n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -457,7 +457,7 @@ module.exports = ".example-icon {\r\n    padding: 0 14px;\r\n  }\r\n  \r\n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of proData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deleteProject(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item.id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Project Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Type: {{item.type}}</mat-card-subtitle>\n          </mat-card-header>\n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <a routerLink=\"/admin-equipment\" routerLinkActive=\"active\"><button mat-raised-button class=\"navButton\">Admin\n        equipment\n      </button></a>\n    <a routerLink=\"/admin-employees\"><button mat-raised-button class=\"navButton\">Admin employees\n      </button></a>\n    <a routerLink=\"/admin-projects\"><button mat-raised-button class=\"navButton\">Admin projects\n      </button></a>\n    <span class=\"example-spacer\">\n    </span>\n    <a>\n      <mat-icon class=\"example-icon\" (click)=\"logout()\">logout</mat-icon>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n<br>\n<br>\n<div class=\"container\">\n  <button mat-fab color=\"accent\" (click)=\"openDialog()\">\n    <mat-icon aria-label=\"Example icon-button with a plus icon\">add</mat-icon>\n  </button>\n  <br>\n  <br>\n  <br>\n  <div class=\"row\">\n    <div *ngFor=\"let item of proData\">\n      <div class=\"col-sm-6\">\n        <mat-card class=\"example-card\">\n          <mat-card-actions>\n            <button mat-icon-button (click)=\"deleteProject(item._id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n            </button>\n            <button mat-icon-button (click)=\"updateDialog(item.id)\">\n              <mat-icon aria-label=\"Example icon-button with a heart icon\">update</mat-icon>\n            </button>\n          </mat-card-actions>\n          <mat-card-header>\n            <mat-card-title>Project Name : {{item.name}}</mat-card-title>\n            <mat-card-subtitle>Type: {{item.type}}</mat-card-subtitle>\n            <mat-card-subtitle>From: {{item.fromDate | slice:0:10}}</mat-card-subtitle>\n            <mat-card-subtitle>To: {{item.toDate | slice:0:10}}</mat-card-subtitle>\n          </mat-card-header>\n        </mat-card>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -535,6 +535,7 @@ var AdminProjectsComponent = /** @class */ (function () {
         axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/deletePro', { id: id })
             .then(function () {
             console.log('deleted');
+            window.location.reload();
         })
             .catch(function (err) {
             throw err;
@@ -562,10 +563,15 @@ var DialogDataProjects = /** @class */ (function () {
         this.dialogRef.close();
     };
     //this function to add an project from the server
-    DialogDataProjects.prototype.Add = function (id, name, type, from, to) {
-        axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/addProject', { id: id, name: name, type: type, from: from, to: to })
+    DialogDataProjects.prototype.Add = function (name, type, from, to) {
+        if (name === void 0) { name = ''; }
+        if (type === void 0) { type = ''; }
+        if (from === void 0) { from = ''; }
+        if (to === void 0) { to = ''; }
+        axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/addProject', { name: name, type: type, from: from, to: to })
             .then(function () {
             console.log('done');
+            window.location.reload();
         })
             .catch(function (err) {
             throw err;
@@ -596,6 +602,7 @@ var DialogDataUpdateProjects = /** @class */ (function () {
         axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/updateProject', { id: id, name: name, type: type, from: from, to: to })
             .then(function () {
             console.log('done');
+            window.location.reload();
         })
             .catch(function (err) {
             throw err;
@@ -623,7 +630,7 @@ var DialogDataUpdateProjects = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Add Project</h1>\r\n<div mat-dialog-content>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"text\" placeholder=\"Project name\" [(ngModel)]=\"name\">\r\n  </mat-form-field>\r\n  <br>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"text\" placeholder=\"Project type\" [(ngModel)]=\"type\">\r\n  </mat-form-field>\r\n  <br>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"date\" placeholder=\"Project from\" [(ngModel)]=\"from\">\r\n  </mat-form-field>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"date\" placeholder=\"Project to\" [(ngModel)]=\"to\">\r\n  </mat-form-field>\r\n</div>\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">No Thanks</button>\r\n  <button mat-button [mat-dialog-close]=\"data\" cdkFocusInitial (click)=\"Add(name, type, from, to)\">Add</button>\r\n</div>"
+module.exports = "<h1 mat-dialog-title>Add Project</h1>\r\n<div mat-dialog-content>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"text\" placeholder=\"Project name\" [(ngModel)]=\"name\">\r\n  </mat-form-field>\r\n  <br>\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput type=\"text\" placeholder=\"Project type\" [(ngModel)]=\"type\">\r\n  </mat-form-field>\r\n  <br>\r\n  <mat-form-field>\r\n    <input matInput [matDatepicker]=\"picker1\" placeholder=\"Project from\" [(ngModel)]=\"from\">\r\n    <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\r\n    <mat-datepicker #picker1></mat-datepicker>\r\n  </mat-form-field>\r\n  \r\n  <mat-form-field>\r\n    <input matInput [matDatepicker]=\"picker\" placeholder=\"Project to\" [(ngModel)]=\"to\">\r\n    <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n    <mat-datepicker #picker></mat-datepicker>\r\n  </mat-form-field>\r\n\r\n</div>\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">No Thanks</button>\r\n  <button mat-button [mat-dialog-close]=\"data\" cdkFocusInitial (click)=\"Add(name, type, from, to)\">Add</button>\r\n</div>"
 
 /***/ }),
 
@@ -721,24 +728,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng_drag_drop__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
-
-
-
-
 
 
 
@@ -812,14 +807,16 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["NoopAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_14__["MatInputModule"],
-                _angular_material_icon__WEBPACK_IMPORTED_MODULE_15__["MatIconModule"],
-                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_16__["MatDialogModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_17__["MatToolbarModule"],
-                _angular_material_table__WEBPACK_IMPORTED_MODULE_18__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"],
-                ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"].forRoot()
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatCardModule"],
+                ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"].forRoot(),
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatNativeDateModule"]
             ],
             exports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -827,14 +824,17 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["NoopAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatCheckboxModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_14__["MatInputModule"],
-                _angular_material_icon__WEBPACK_IMPORTED_MODULE_15__["MatIconModule"],
-                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_16__["MatDialogModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_17__["MatToolbarModule"],
-                _angular_material_table__WEBPACK_IMPORTED_MODULE_18__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
                 ng_drag_drop__WEBPACK_IMPORTED_MODULE_11__["NgDragDropModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_19__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatCardModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatNativeDateModule"]
             ],
             entryComponents: [
                 _admin_equipment_admin_equipment_component__WEBPACK_IMPORTED_MODULE_5__["AdminEquipmentComponent"],
@@ -1118,7 +1118,7 @@ module.exports = "table {\r\n  width: 100%;\r\n}\r\n.example-icon {\r\n  padding
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <span class=\"example-spacer\">\n    </span>\n    <a (click)=\"openDialog()\">\n      <button mat-button color=\"primary\">\n        <h3>Login</h3>\n        <mat-icon class=\"example-icon\">person</mat-icon>\n      </button>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\n\n  <!--- Note that these columns can be defined in any order.\n        The actual rendered columns are set as a property on the row definition\" -->\n\n  <ng-container matColumnDef=\"projectName\">\n    <th mat-header-cell *matHeaderCellDef> Project Name </th>\n    <td mat-cell *matCellDef=\"let element\"><a (click)=\"nextPage(element._id, element.name)\">{{element.name}} </a></td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"employees\">\n    <th mat-header-cell *matHeaderCellDef> #Employees </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.employees}} </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"equipment\">\n    <th mat-header-cell *matHeaderCellDef> #Equipment </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.equipment}} </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"fromDate\">\n    <th mat-header-cell *matHeaderCellDef> From Date </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.fromDate}} </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"toDate\">\n    <th mat-header-cell *matHeaderCellDef> To Date </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.toDate}} </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n</table>"
+module.exports = "<mat-toolbar color=\"accent\">\n  <mat-toolbar-row>\n    <span>Logo</span>\n    <span class=\"example-spacer\">\n    </span>\n    <a (click)=\"openDialog()\">\n      <button mat-button color=\"primary\">\n        <h3>Login</h3>\n        <mat-icon class=\"example-icon\">person</mat-icon>\n      </button>\n    </a>\n  </mat-toolbar-row>\n</mat-toolbar>\n\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\n\n  <!--- Note that these columns can be defined in any order.\n        The actual rendered columns are set as a property on the row definition\" -->\n\n  <ng-container matColumnDef=\"projectName\">\n    <th mat-header-cell *matHeaderCellDef> Project Name </th>\n    <td mat-cell *matCellDef=\"let element\"><a (click)=\"nextPage(element._id, element.name)\">{{element.name}} </a></td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"employees\">\n    <th mat-header-cell *matHeaderCellDef> #Employees </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.employees}} </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"equipment\">\n    <th mat-header-cell *matHeaderCellDef> #Equipment </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.equipment}} </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"fromDate\">\n    <th mat-header-cell *matHeaderCellDef> From Date </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.fromDate | slice:0:10}}</td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"toDate\">\n    <th mat-header-cell *matHeaderCellDef> To Date </th>\n    <td mat-cell *matCellDef=\"let element\"> {{element.toDate | slice:0:10}} </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n</table>"
 
 /***/ }),
 

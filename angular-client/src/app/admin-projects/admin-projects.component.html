@@ -39,6 +39,8 @@
           <mat-card-header>
             <mat-card-title>Project Name : {{item.name}}</mat-card-title>
             <mat-card-subtitle>Type: {{item.type}}</mat-card-subtitle>
+            <mat-card-subtitle>From: {{item.fromDate | slice:0:10}}</mat-card-subtitle>
+            <mat-card-subtitle>To: {{item.toDate | slice:0:10}}</mat-card-subtitle>
           </mat-card-header>
         </mat-card>
       </div>

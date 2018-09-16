@@ -21,24 +21,24 @@ export class AdminProjectsComponent implements OnInit {
   ngOnInit() {
     this.projectData(this.proData)
   }
-  
+
   //this function to open the add project dialog
   openDialog() {
     this.dialog.open(DialogDataProjects);
   }
-  
+
   //this function to open the update project dialog
   updateDialog(id) {
     this.dialog.open(DialogDataUpdateProjects, {
       data: { id: id }
     });
   }
-  
+
   //this function to out from the page
   logout() {
     this.router.navigate(['home'])
   }
-  
+
   //this function to retreve the data from the server
   projectData(proData = []) {
     Axios.get('/getProject')
@@ -51,12 +51,13 @@ export class AdminProjectsComponent implements OnInit {
         console.log(err);
       })
   }
-  
+
   //this function to delete an project from the server
   deleteProject(id) {
     Axios.post('/deletePro', { id })
       .then(() => {
         console.log('deleted');
+        window.location.reload();
       })
       .catch((err) => {
         throw err;
@@ -78,12 +79,13 @@ export class DialogDataProjects {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  
+
   //this function to add an project from the server
-  Add(id, name, type, from, to) {
-    Axios.post('/addProject', { id, name, type, from, to })
+  Add(name = '', type = '', from = '', to = '') {
+    Axios.post('/addProject', { name, type, from, to })
       .then(() => {
         console.log('done');
+        window.location.reload();
       })
       .catch((err) => {
         throw err;
@@ -105,12 +107,13 @@ export class DialogDataUpdateProjects {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  
+
   //this function to update an project from the server
   Update(id, name, type, from, to) {
     Axios.post('/updateProject', { id, name, type, from, to })
       .then(() => {
         console.log('done');
+        window.location.reload();
       })
       .catch((err) => {
         throw err;
