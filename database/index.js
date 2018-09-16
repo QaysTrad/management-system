@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/manage');
+mongoose.connect('mongodb://qays:Qays1234@ds259802.mlab.com:59802/mange-system');
+
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 
