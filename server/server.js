@@ -218,5 +218,9 @@ app.get('/*', function (req, res) {
     res.sendFile(path.resolve(path.join(__dirname, '../angular-client/dist/angular-client/index.html')))
 })
 
-var port = 3000;
-app.listen(port, () => console.log(`listening on port ${port}!`));
+const port = process.env.PORT || 3000;
+if (!module.parent) {
+    app.listen(port, () =>{
+        console.log(`listening on port ${port}!`));
+    } 
+}
