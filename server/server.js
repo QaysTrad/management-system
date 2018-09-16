@@ -28,6 +28,7 @@ app.post('/addEquip', (req, res) => {
     });
 })
 
+
 //this function to delete Equipment from the database by equipment id  
 app.post('/deteleEquip', (req, res) => {
     id = req.body.id;
