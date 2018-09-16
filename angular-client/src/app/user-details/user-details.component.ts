@@ -81,7 +81,6 @@ export class UserDetailsComponent implements OnInit {
     }
 
   }
-
   //this function to save the dropped items in the database
   save(droppedEquip = [], droppedEmp = []) {
      if (this.droppedEquipment[0].name.length === 0 && this.droppedEmployee[0].name.length === 0) {
